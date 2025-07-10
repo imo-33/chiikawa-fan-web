@@ -1509,3 +1509,84 @@ small {
   height: auto;
   display: block;
 }
+
+.button-wrapper {
+  text-align: center;
+  margin-top: 20px;
+  /* optional spacing */
+}
+
+.pretty-button {
+  display: block;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, var(--color-pale-pink), var(--color-blush-pink));
+  border: 2px solid var(--color-rose-pink);
+  border-radius: 15px;
+  font-family: 'Playfair Display', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px var(--shadow-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  margin: 20px auto;
+  /* center horizontally */
+}
+
+.pretty-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-accent-pink), var(--color-rose-pink));
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.pretty-button:hover::before {
+  width: 100%;
+}
+
+.pretty-button:hover {
+  color: var(--text-white);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px var(--shadow-medium);
+}
+
+.pretty-button:active {
+  transform: translateY(-1px);
+}
+
+/* Loading state for button */
+.pretty-button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.pretty-button.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--text-white);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
